@@ -1,0 +1,336 @@
+[
+{
+"id": 1,
+"farmerName": "Rinsha Laloo",
+"cropName": "Organic Ginger",
+"price": 120,
+"quantity": "50 kg",
+"location": "Shillong, Meghalaya",
+"image": "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
+"description": "Fresh organic ginger grown in the hills of Meghalaya.",
+"createdAt": "2026-03-01"
+},
+{
+"id": 2,
+"farmerName": "Lalthanga Sailo",
+"cropName": "Turmeric",
+"price": 90,
+"quantity": "80 kg",
+"location": "Aizawl, Mizoram",
+"image": "https://images.pexels.com/photos/4198023/pexels-photo-4198023.jpeg",
+"description": "Natural turmeric harvested from organic farms.",
+"createdAt": "2026-03-02"
+},
+{
+"id": 3,
+"farmerName": "Benedict Marak",
+"cropName": "Organic Pineapple",
+"price": 60,
+"quantity": "120 pcs",
+"location": "Tura, Meghalaya",
+"image": "https://images.pexels.com/photos/5945740/pexels-photo-5945740.jpeg",
+"description": "Sweet pineapples freshly harvested.",
+"createdAt": "2026-03-03"
+},
+{
+"id": 4,
+"farmerName": "Khwairakpam Ranjit",
+"cropName": "Chillies",
+"price": 70,
+"quantity": "30 kg",
+"location": "Imphal, Manipur",
+"image": "https://images.pexels.com/photos/533360/pexels-photo-533360.jpeg",
+"description": "Fresh red chillies from local farms.",
+"createdAt": "2026-03-03"
+},
+{
+"id": 5,
+"farmerName": "Temjen Jamir",
+"cropName": "Organic Rice",
+"price": 55,
+"quantity": "200 kg",
+"location": "Dimapur, Nagaland",
+"image": "https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg",
+"description": "Traditional rice cultivated using natural farming methods.",
+"createdAt": "2026-03-04"
+},
+{
+"id": 6,
+"farmerName": "Pynshngain Khongwir",
+"cropName": "Bananas",
+"price": 40,
+"quantity": "150 pcs",
+"location": "Nongpoh, Meghalaya",
+"image": "https://images.pexels.com/photos/5946082/pexels-photo-5946082.jpeg",
+"description": "Sweet local bananas from hill farms.",
+"createdAt": "2026-03-05"
+},
+{
+"id": 7,
+"farmerName": "Zoramthangi",
+"cropName": "Bamboo Shoots",
+"price": 85,
+"quantity": "40 kg",
+"location": "Lunglei, Mizoram",
+"image": "https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg",
+"description": "Fresh bamboo shoots used in traditional cuisine.",
+"createdAt": "2026-03-05"
+},
+{
+"id": 8,
+"farmerName": "Rishot Kharkongor",
+"cropName": "Organic Tomatoes",
+"price": 45,
+"quantity": "60 kg",
+"location": "Shillong, Meghalaya",
+"image": "https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg",
+"description": "Naturally grown tomatoes without chemicals.",
+"createdAt": "2026-03-06"
+},
+{
+"id": 9,
+"farmerName": "Lalrinmawia",
+"cropName": "Green Beans",
+"price": 50,
+"quantity": "40 kg",
+"location": "Aizawl, Mizoram",
+"image": "https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg",
+"description": "Fresh green beans from organic farms.",
+"createdAt": "2026-03-06"
+},
+{
+"id": 10,
+"farmerName": "Bikash Sangma",
+"cropName": "Potatoes",
+"price": 35,
+"quantity": "120 kg",
+"location": "Tura, Meghalaya",
+"image": "https://images.pexels.com/photos/2286776/pexels-photo-2286776.jpeg",
+"description": "Fresh hill potatoes grown without chemicals.",
+"createdAt": "2026-03-07"
+},
+
+{
+"id": 11,
+"farmerName": "Merina Nongrum",
+"cropName": "Cabbage",
+"price": 30,
+"quantity": "90 kg",
+"location": "Shillong, Meghalaya",
+"image": "https://images.pexels.com/photos/1435907/pexels-photo-1435907.jpeg",
+"description": "Fresh organic cabbage harvested this week.",
+"createdAt": "2026-03-07"
+},
+{
+"id": 12,
+"farmerName": "Lalchungnunga",
+"cropName": "Carrots",
+"price": 40,
+"quantity": "70 kg",
+"location": "Champhai, Mizoram",
+"image": "https://images.pexels.com/photos/143133/pexels-photo-143133.jpeg",
+"description": "Sweet organic carrots grown in hill soil.",
+"createdAt": "2026-03-08"
+},
+{
+"id": 13,
+"farmerName": "Rakesh Marak",
+"cropName": "Ginger",
+"price": 115,
+"quantity": "60 kg",
+"location": "Williamnagar, Meghalaya",
+"image": "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
+"description": "Fresh ginger harvested from organic farms.",
+"createdAt": "2026-03-08"
+},
+{
+"id": 14,
+"farmerName": "Kimi Achumi",
+"cropName": "Tea Leaves",
+"price": 150,
+"quantity": "30 kg",
+"location": "Mokokchung, Nagaland",
+"image": "https://images.pexels.com/photos/1508666/pexels-photo-1508666.jpeg",
+"description": "Hand-picked tea leaves from hill plantations.",
+"createdAt": "2026-03-09"
+},
+{
+"id": 15,
+"farmerName": "Sanjib Deka",
+"cropName": "Mustard Greens",
+"price": 35,
+"quantity": "45 kg",
+"location": "Guwahati, Assam",
+"image": "https://images.pexels.com/photos/4750270/pexels-photo-4750270.jpeg",
+"description": "Fresh mustard leaves used for traditional dishes.",
+"createdAt": "2026-03-09"
+},
+
+{
+"id": 16,
+"farmerName": "Phurailatpam Devi",
+"cropName": "Spinach",
+"price": 25,
+"quantity": "35 kg",
+"location": "Imphal, Manipur",
+"image": "https://images.pexels.com/photos/2329440/pexels-photo-2329440.jpeg",
+"description": "Organic spinach grown in small farms.",
+"createdAt": "2026-03-10"
+},
+{
+"id": 17,
+"farmerName": "Lalruatkima",
+"cropName": "Bananas",
+"price": 45,
+"quantity": "200 pcs",
+"location": "Kolasib, Mizoram",
+"image": "https://images.pexels.com/photos/5946082/pexels-photo-5946082.jpeg",
+"description": "Naturally ripened bananas from local plantations.",
+"createdAt": "2026-03-10"
+},
+{
+"id": 18,
+"farmerName": "Samuel Kharshiing",
+"cropName": "Turmeric",
+"price": 95,
+"quantity": "70 kg",
+"location": "Jowai, Meghalaya",
+"image": "https://images.pexels.com/photos/4198023/pexels-photo-4198023.jpeg",
+"description": "Organic turmeric grown in fertile hill soil.",
+"createdAt": "2026-03-11"
+},
+{
+"id": 19,
+"farmerName": "Akum Jamir",
+"cropName": "Chillies",
+"price": 75,
+"quantity": "25 kg",
+"location": "Dimapur, Nagaland",
+"image": "https://images.pexels.com/photos/533360/pexels-photo-533360.jpeg",
+"description": "Hot red chillies freshly harvested.",
+"createdAt": "2026-03-11"
+},
+{
+"id": 20,
+"farmerName": "Pynhun Lyngdoh",
+"cropName": "Organic Cucumber",
+"price": 30,
+"quantity": "80 kg",
+"location": "Shillong, Meghalaya",
+"image": "https://images.pexels.com/photos/1458694/pexels-photo-1458694.jpeg",
+"description": "Fresh cucumbers perfect for salads.",
+"createdAt": "2026-03-12"
+},
+
+{
+"id": 21,
+"farmerName": "Tlanghmingthanga",
+"cropName": "Pumpkin",
+"price": 50,
+"quantity": "100 kg",
+"location": "Aizawl, Mizoram",
+"image": "https://images.pexels.com/photos/5946083/pexels-photo-5946083.jpeg",
+"description": "Large pumpkins grown organically.",
+"createdAt": "2026-03-12"
+},
+{
+"id": 22,
+"farmerName": "Sengal Sangma",
+"cropName": "Pineapple",
+"price": 65,
+"quantity": "150 pcs",
+"location": "Tura, Meghalaya",
+"image": "https://images.pexels.com/photos/5945740/pexels-photo-5945740.jpeg",
+"description": "Sweet hill pineapples freshly harvested.",
+"createdAt": "2026-03-13"
+},
+{
+"id": 23,
+"farmerName": "Merenla Ao",
+"cropName": "Green Peas",
+"price": 60,
+"quantity": "45 kg",
+"location": "Kohima, Nagaland",
+"image": "https://images.pexels.com/photos/65175/pexels-photo-65175.jpeg",
+"description": "Fresh green peas harvested from hill farms.",
+"createdAt": "2026-03-13"
+},
+{
+"id": 24,
+"farmerName": "Donboklang Nongrum",
+"cropName": "Tomatoes",
+"price": 48,
+"quantity": "75 kg",
+"location": "Shillong, Meghalaya",
+"image": "https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg",
+"description": "Organic tomatoes with natural taste.",
+"createdAt": "2026-03-14"
+},
+{
+"id": 25,
+"farmerName": "Rosangliana",
+"cropName": "Rice",
+"price": 52,
+"quantity": "250 kg",
+"location": "Serchhip, Mizoram",
+"image": "https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg",
+"description": "Traditional hill rice cultivated organically.",
+"createdAt": "2026-03-14"
+},
+
+{
+"id": 26,
+"farmerName": "Jiban Deka",
+"cropName": "Eggplant",
+"price": 35,
+"quantity": "60 kg",
+"location": "Guwahati, Assam",
+"image": "https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg",
+"description": "Fresh eggplants harvested from local farms.",
+"createdAt": "2026-03-15"
+},
+{
+"id": 27,
+"farmerName": "Akhumla Jamir",
+"cropName": "Ginger",
+"price": 118,
+"quantity": "55 kg",
+"location": "Dimapur, Nagaland",
+"image": "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
+"description": "Fresh organic ginger from hill farms.",
+"createdAt": "2026-03-15"
+},
+{
+"id": 28,
+"farmerName": "Mary Kharkongor",
+"cropName": "Turmeric",
+"price": 92,
+"quantity": "65 kg",
+"location": "Shillong, Meghalaya",
+"image": "https://images.pexels.com/photos/4198023/pexels-photo-4198023.jpeg",
+"description": "Organic turmeric with strong aroma.",
+"createdAt": "2026-03-16"
+},
+{
+"id": 29,
+"farmerName": "Lalremruata",
+"cropName": "Chillies",
+"price": 78,
+"quantity": "35 kg",
+"location": "Aizawl, Mizoram",
+"image": "https://images.pexels.com/photos/533360/pexels-photo-533360.jpeg",
+"description": "Spicy fresh chillies grown naturally.",
+"createdAt": "2026-03-16"
+},
+{
+"id": 30,
+"farmerName": "Bok Marak",
+"cropName": "Potatoes",
+"price": 33,
+"quantity": "140 kg",
+"location": "Tura, Meghalaya",
+"image": "https://images.pexels.com/photos/2286776/pexels-photo-2286776.jpeg",
+"description": "Hill potatoes freshly harvested.",
+"createdAt": "2026-03-17"
+}
+]

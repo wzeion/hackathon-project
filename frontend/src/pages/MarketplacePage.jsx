@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,13 +15,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
 import {
   ChevronDown,
-  Eye,
-  Filter,
   IndianRupee,
   Leaf,
   MapPin,
@@ -31,7 +27,6 @@ import {
   Send,
   SlidersHorizontal,
   Sprout,
-  Star,
   Wheat,
   X,
 } from "lucide-react";
@@ -40,157 +35,31 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { useTranslation } from "../hooks/useTranslation";
 import { useAppStore } from "../stores/appStore";
-import { getAllPosts } from "../utils/api";
+import api, { getAllPosts } from "../utils/api";
+import farmerPosts from "../data/farmer_posts.json";
+import PostCard from "../components/PostCard";
+import { getFallbackImage } from "../utils/fallbackImages";
 
 // ── Unique locations from products ────────────────────────────────────────
 function getLocations(products) {
-  const locs = new Set(products.map((p) => (p.location || '').split(",")[0].trim()).filter(Boolean));
+  const locs = new Set(
+    products
+      .map((p) => (p.location || "").split(",")[0].trim())
+      .filter(Boolean),
+  );
   return Array.from(locs).sort();
-}
-
-// ── Star rating display ───────────────────────────────────────────────────
-function StarRating({ rating, count }) {
-  return (
-    <div className="flex items-center gap-1">
-      <Star className="w-3 h-3 fill-farm-amber text-farm-amber" />
-      <span className="text-xs font-medium text-foreground">
-        {rating.toFixed(1)}
-      </span>
-      <span className="text-xs text-muted-foreground">({count})</span>
-    </div>
-  );
-}
-
-// ── Product card ──────────────────────────────────────────────────────────
-function ProductCard({
-  product,
-  isOwner,
-  isBuyer,
-  onInterested,
-  onView,
-}) {
-  const { t } = useTranslation();
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -8, transition: { duration: 0.2 } }}
-      className="group bg-card rounded-[2rem] border border-border/50 overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-shadow duration-300 flex flex-col"
-    >
-      {/* Image Container */}
-      <div className="relative aspect-[4/3] bg-muted overflow-hidden">
-        <img
-          src={product.images?.[0] || product.imageUrl || "/artifacts/fresh_produce_basket_1772729731157.png"}
-          alt={product.cropName}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          onError={(e) => {
-            e.currentTarget.src =
-              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0fdf4'/%3E%3Ctext x='200' y='155' text-anchor='middle' font-size='48'%3E🌿%3C/text%3E%3C/svg%3E";
-          }}
-        />
-
-        {/* Top Badges */}
-        <div className="absolute top-3 right-3 flex flex-col gap-2 scale-90 origin-top-right">
-          <Badge className="bg-white/90 backdrop-blur-md text-primary hover:bg-white font-bold px-3 py-1 rounded-full shadow-sm">
-            ₹{product.price}/{t("products.kg")}
-          </Badge>
-          <Badge
-            className={`backdrop-blur-md border-0 px-3 py-1 rounded-full font-bold shadow-sm ${product.status === "active"
-              ? "bg-emerald-500 text-white"
-              : "bg-gray-500 text-white"
-              }`}
-          >
-            {product.status === "active" ? t("products.active") : t("products.sold")}
-          </Badge>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-5 flex-1 flex flex-col gap-4">
-        <div>
-          <h3 className="text-lg font-display font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
-            {product.cropName}
-          </h3>
-          <p className="text-xs text-muted-foreground mt-1 line-clamp-2 leading-relaxed">
-            {product.description}
-          </p>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-2 p-3 rounded-2xl bg-muted/30">
-          <div className="flex flex-col">
-            <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold leading-none mb-1">
-              Quantity
-            </span>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-foreground">
-              <Package className="w-3 h-3 text-primary/60" />
-              {product.quantity} kg
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold leading-none mb-1">
-              Location
-            </span>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-foreground">
-              <MapPin className="w-3 h-3 text-primary/60" />
-              <span className="truncate">{product.location}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Farmer Info */}
-        <div className="flex items-center gap-2 border-t border-border pt-4">
-          <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
-            <User className="w-3.5 h-3.5 text-primary" />
-          </div>
-          <span className="text-xs font-bold text-muted-foreground truncate">
-            {product.userId?.name || product.farmerName || 'Unknown Farmer'}
-          </span>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => onView(product)}
-            className="flex-1 h-9 text-[11px] gap-1.5 rounded-xl border-2 hover:bg-muted font-bold"
-          >
-            <Eye className="w-3.5 h-3.5" />
-            {t("products.viewDetail")}
-          </Button>
-          {isBuyer && product.status === "active" && !isOwner && (
-            <motion.div whileTap={{ scale: 0.95 }} className="flex-1">
-              <Button
-                size="sm"
-                onClick={() => onInterested(product)}
-                className="w-full h-9 text-[11px] gap-1.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl font-bold shadow-lg shadow-primary/20"
-              >
-                <Send className="w-3.5 h-3.5" />
-                {t("products.interested")}
-              </Button>
-            </motion.div>
-          )}
-        </div>
-      </div>
-    </motion.div>
-  );
 }
 
 // ── Main marketplace ──────────────────────────────────────────────────────
 export default function MarketplacePage() {
   const { t } = useTranslation();
-  const { products, setProducts, currentUser, addInterest, addNotification, interests } =
-    useAppStore();
+  const { products, setProducts, currentUser } = useAppStore();
 
   const [search, setSearch] = useState("");
   const [locationFilter, setLocationFilter] = useState("all");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(500);
-  const [statusFilter, setStatusFilter] = useState("active");
+  const [statusFilter, setStatusFilter] = useState("all");
   const [showFilters, setShowFilters] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [interestProduct, setInterestProduct] = useState(null);
@@ -198,18 +67,35 @@ export default function MarketplacePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch posts from backend API on mount
+  // Fetch posts from backend API and merge with JSON data on mount
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         setIsLoading(true);
-        const data = await getAllPosts();
-        if (data.success) {
-          setProducts(data.posts);
+        // Start with JSON data as requested
+        let combinedPosts = [...farmerPosts];
+
+        try {
+          const data = await getAllPosts();
+          if (data.success && data.posts) {
+            // Append API posts that are not already in local data (by ID if possible)
+            const localIds = new Set(farmerPosts.map((p) => p.id));
+            const newPosts = data.posts.filter(
+              (p) => !localIds.has(p._id) && !localIds.has(p.id),
+            );
+            combinedPosts = [...combinedPosts, ...newPosts];
+          }
+        } catch (apiError) {
+          console.warn(
+            "API fetch failed, using local JSON data only:",
+            apiError,
+          );
         }
+
+        setProducts(combinedPosts);
       } catch (error) {
-        console.error('Error fetching posts:', error);
-        toast.error('Failed to load marketplace listings');
+        console.error("Error in post initialization:", error);
+        toast.error("Failed to load marketplace listings");
       } finally {
         setIsLoading(false);
       }
@@ -224,13 +110,20 @@ export default function MarketplacePage() {
     return products
       .filter((p) => {
         const matchSearch = search.trim()
-          ? (p.cropName || '').toLowerCase().includes(search.toLowerCase()) ||
-          (p.description || '').toLowerCase().includes(search.toLowerCase()) ||
-          (p.userId?.name || p.farmerName || '').toLowerCase().includes(search.toLowerCase())
+          ? (p.cropName || "").toLowerCase().includes(search.toLowerCase()) ||
+            (p.description || "")
+              .toLowerCase()
+              .includes(search.toLowerCase()) ||
+            (p.userId?.name || p.farmerName || "")
+              .toLowerCase()
+              .includes(search.toLowerCase()) ||
+            (p.location || "").toLowerCase().includes(search.toLowerCase())
           : true;
         const matchLocation =
           locationFilter === "all" ||
-          (p.location || '').toLowerCase().includes(locationFilter.toLowerCase());
+          (p.location || "")
+            .toLowerCase()
+            .includes(locationFilter.toLowerCase());
         const matchPrice = p.price >= minPrice && p.price <= maxPrice;
         const matchStatus = statusFilter === "all" || p.status === statusFilter;
         return matchSearch && matchLocation && matchPrice && matchStatus;
@@ -253,7 +146,7 @@ export default function MarketplacePage() {
     setLocationFilter("all");
     setMinPrice(0);
     setMaxPrice(maxProductPrice);
-    setStatusFilter("active");
+    setStatusFilter("all");
   }
 
   async function handleInterest() {
@@ -263,7 +156,10 @@ export default function MarketplacePage() {
     try {
       await api.post("/interests/create", {
         postId: interestProduct._id || interestProduct.id,
-        farmerId: interestProduct.userId?._id || interestProduct.userId || interestProduct.farmerId,
+        farmerId:
+          interestProduct.userId?._id ||
+          interestProduct.userId ||
+          interestProduct.farmerId,
         message: interestMessage.trim() || t("interests.defaultMessage"),
       });
 
@@ -382,10 +278,7 @@ export default function MarketplacePage() {
                     <Wheat className="w-3.5 h-3.5" />
                     Status
                   </Label>
-                  <Select
-                    value={statusFilter}
-                    onValueChange={setStatusFilter}
-                  >
+                  <Select value={statusFilter} onValueChange={setStatusFilter}>
                     <SelectTrigger className="h-8 text-sm">
                       <SelectValue />
                     </SelectTrigger>
@@ -509,15 +402,18 @@ export default function MarketplacePage() {
         ) : (
           <motion.div
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             <AnimatePresence>
               {filteredProducts.map((product) => (
-                <ProductCard
+                <PostCard
                   key={product._id || product.id}
                   product={product}
-                  currentUserId={currentUser?.id ?? ""}
-                  isOwner={product.userId?._id === currentUser?.id || product.userId === currentUser?.id}
+                  currentUser={currentUser}
+                  isOwner={
+                    product.userId?._id === currentUser?.id ||
+                    product.userId === currentUser?.id
+                  }
                   isBuyer={currentUser?.role === "buyer"}
                   onInterested={setInterestProduct}
                   onView={setSelectedProduct}
@@ -538,12 +434,18 @@ export default function MarketplacePage() {
             <>
               <div className="h-52 -mx-6 -mt-6 overflow-hidden rounded-t-lg">
                 <img
-                  src={selectedProduct.images?.[0] || selectedProduct.imageUrl}
+                  src={
+                    selectedProduct.image ||
+                    selectedProduct.images?.[0] ||
+                    selectedProduct.imageUrl ||
+                    getFallbackImage(selectedProduct.cropName)
+                  }
                   alt={selectedProduct.cropName}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.currentTarget.src =
-                      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0fdf4'/%3E%3Ctext x='200' y='105' text-anchor='middle' font-size='48'%3E🌿%3C/text%3E%3C/svg%3E";
+                    e.currentTarget.src = getFallbackImage(
+                      selectedProduct.cropName,
+                    );
                   }}
                 />
               </div>
@@ -553,10 +455,11 @@ export default function MarketplacePage() {
                     {selectedProduct.cropName}
                   </DialogTitle>
                   <span
-                    className={`text-xs px-2 py-1 rounded-full font-medium flex-shrink-0 ${selectedProduct.status === "active"
-                      ? "badge-active"
-                      : "badge-sold"
-                      }`}
+                    className={`text-xs px-2 py-1 rounded-full font-medium flex-shrink-0 ${
+                      selectedProduct.status === "active"
+                        ? "badge-active"
+                        : "badge-sold"
+                    }`}
                   >
                     {selectedProduct.status === "active"
                       ? t("products.status.active")
@@ -589,7 +492,10 @@ export default function MarketplacePage() {
                     },
                     {
                       label: t("common.by"),
-                      value: selectedProduct.userId?.name || selectedProduct.farmerName || 'Unknown',
+                      value:
+                        selectedProduct.userId?.name ||
+                        selectedProduct.farmerName ||
+                        "Unknown",
                       icon: <Sprout className="w-3.5 h-3.5" />,
                     },
                   ].map(({ label, value, icon }) => (
@@ -650,12 +556,18 @@ export default function MarketplacePage() {
               <div className="bg-farm-green-pale rounded-xl p-3 flex items-center gap-3">
                 <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
                   <img
-                    src={interestProduct.images?.[0] || interestProduct.imageUrl}
+                    src={
+                      interestProduct.image ||
+                      interestProduct.images?.[0] ||
+                      interestProduct.imageUrl ||
+                      getFallbackImage(interestProduct.cropName)
+                    }
                     alt={interestProduct.cropName}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      e.currentTarget.src =
-                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23dcfce7'/%3E%3Ctext x='24' y='30' text-anchor='middle' font-size='24'%3E🌿%3C/text%3E%3C/svg%3E";
+                      e.currentTarget.src = getFallbackImage(
+                        interestProduct.cropName,
+                      );
                     }}
                   />
                 </div>
@@ -664,7 +576,10 @@ export default function MarketplacePage() {
                     {interestProduct.cropName}
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    ₹{interestProduct.price}/kg · {interestProduct.userId?.name || interestProduct.farmerName || 'Unknown'}
+                    ₹{interestProduct.price}/kg ·{" "}
+                    {interestProduct.userId?.name ||
+                      interestProduct.farmerName ||
+                      "Unknown"}
                   </div>
                 </div>
               </div>

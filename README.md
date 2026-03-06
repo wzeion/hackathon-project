@@ -1,277 +1,150 @@
-# Local Connect
+# Local Connect — Agri Marketplace
 
-A full-stack marketplace application that connects farmers directly with buyers, eliminating middlemen. Built with the MERN stack (MongoDB, Express, React, Node.js) and Firebase for authentication.
+A production-ready full-stack web application connecting farmers directly to buyers. Built with React (Vite), Node.js/Express, MongoDB, Firebase Authentication, and Cloudinary.
 
-![Local Connect](https://img.shields.io/badge/Local-Connect-green?style=for-the-badge)
-![React](https://img.shields.io/badge/React-19-blue?style=flat-square)
-![Node.js](https://img.shields.io/badge/Node.js-Express-green?style=flat-square)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?style=flat-square)
+## Tech Stack
 
-## 🌟 Features
+| Layer | Technology |
+|---|---|
+| Frontend | React 19 + Vite, Tailwind CSS, Zustand |
+| Backend | Node.js + Express 5 |
+| Database | MongoDB + Mongoose |
+| Auth | Firebase Auth (Google + Phone OTP) |
+| Media | Cloudinary (images & videos) |
+| Security | Helmet, CORS, Rate Limiting, JWT, Joi |
 
-### Authentication
+## Prerequisites
 
-- **Firebase Authentication** with multiple providers:
-  - Google Sign-In (Popup)
-  - Phone Number Authentication (OTP)
-- **JWT Tokens** for API security with refresh tokens
-- Multi-step registration flow with role selection (Farmer/Buyer)
-- Demo accounts for testing
+- **Node.js** ≥ 18
+- **MongoDB** (Atlas or local)
+- **Firebase** project (with Auth enabled for Google and Phone)
+- **Cloudinary** account
 
-### User Roles
+## Setup
 
-- **Farmer**: List products, manage inventory, receive notifications
-- **Buyer**: Browse marketplace, search crops, contact farmers
-- **Admin**: Full system access and dashboard
+### 1. Clone & Install
 
-### Core Functionality
+```bash
+git clone <repo-url>
+cd local-connect
 
-- 📦 Product listing with images, pricing, and descriptions
-- 🔍 Search and filter products by various criteria
-- 📱 Push notifications for new products and updates
-- 🌍 Multi-language support (English, Hindi, Khasi, Mizo)
-- 📶 Offline indicator for poor connectivity areas
+# Install backend dependencies
+cd backend && npm install
 
-### Tech Stack
-
-#### Backend
-
-| Technology         | Purpose              |
-| ------------------ | -------------------- |
-| Express.js         | REST API Framework   |
-| MongoDB + Mongoose | Database & ODM       |
-| Firebase Admin     | Authentication & FCM |
-| JWT                | Token-based Auth     |
-| Helmet             | Security Headers     |
-| Express Rate Limit | API Rate Limiting    |
-
-#### Frontend
-
-| Technology      | Purpose           |
-| --------------- | ----------------- |
-| React 19        | UI Framework      |
-| Vite            | Build Tool        |
-| Tailwind CSS    | Styling           |
-| Radix UI        | Component Library |
-| Zustand         | State Management  |
-| TanStack Query  | Data Fetching     |
-| Firebase Client | Client Auth       |
-| React Hook Form | Form Handling     |
-
-## 📁 Project Structure
-
-```
-local-connect/
-├── backend/
-│   ├── config/
-│   │   └── firebase.js         # Firebase Admin SDK config
-│   ├── controllers/
-│   │   ├── authController.js   # Authentication logic
-│   │   ├── productController.js # Product CRUD
-│   │   └── userController.js   # User management
-│   ├── middleware/
-│   │   └── auth.js             # JWT authentication middleware
-│   ├── models/
-│   │   ├── Notification.js     # Notification schema
-│   │   ├── Product.js         # Product schema
-│   │   └── User.js            # User schema
-│   ├── routes/
-│   │   ├── authRoutes.js      # Auth API routes
-│   │   ├── productRoutes.js   # Product API routes
-│   │   └── userRoutes.js      # User API routes
-│   ├── utils/
-│   │   └── notification.js    # FCM notification utilities
-│   ├── firebase-admin-sdk.json
-│   ├── package.json
-│   └── server.js              # Express app entry point
-│
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   │   ├── Navbar.jsx     # Navigation component
-    │   │   └── ui/            # Radix UI components
-    │   ├── pages/
-    │   │   ├── AdminDashboard.jsx
-    │   │   ├── AuthPage.jsx   # Authentication page
-    │   │   ├── BuyerDashboard.jsx
-    │   │   ├── FarmerDashboard.jsx
-    │   │   ├── MarketplacePage.jsx
-    │   │   ├── NotificationsPage.jsx
-    │   │   └── ProfilePage.jsx
-    │   ├── stores/
-    │   │   └── appStore.js    # Zustand store
-    │   ├── hooks/
-    │   │   ├── useTranslation.js
-    │   │   └── use-mobile.jsx
-    │   ├── firebase.js        # Firebase client config
-    │   ├── utils/
-    │   │   └── api.js         # API client
-    │   ├── App.jsx            # Main app component
-    │   └── main.jsx           # React entry point
-    ├── env.json
-    ├── package.json
-    ├── tailwind.config.js
-    └── vite.config.js
+# Install frontend dependencies
+cd ../frontend && npm install
 ```
 
-## 🚀 Getting Started
+### 2. Backend Environment
 
-### Prerequisites
+Create `backend/.env` from the example:
 
-- Node.js (v18+)
-- MongoDB (local or Atlas)
-- Firebase Project (for Auth & FCM)
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-
-```
-bash
-   cd backend
-
+```bash
+cp backend/.env.example backend/.env
 ```
 
-2. Install dependencies:
+Fill in your credentials:
 
-```
-bash
-   npm install
+```env
+PORT=5000
+MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/<db>
+JWT_SECRET=<your-secret>
 
-```
+# Firebase Admin SDK (either JSON or individual fields)
+FIREBASE_SERVICE_ACCOUNT_JSON=<json-string>
+# OR
+FIREBASE_PROJECT_ID=
+FIREBASE_CLIENT_EMAIL=
+FIREBASE_PRIVATE_KEY=
 
-3. Create a `.env` file in the backend directory:
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 
-```
-env
-   PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/local-connect
-   JWT_SECRET=your_jwt_secret_key
-   JWT_REFRESH_SECRET=your_refresh_secret_key
-   CORS_ORIGIN=http://localhost:5173
-
-```
-
-4. Set up Firebase Admin SDK:
-   - Go to Firebase Console → Project Settings → Service Accounts
-   - Download the service account JSON
-   - Rename it to `firebase-admin-sdk.json` in the backend folder
-
-5. Start the backend server:
-
-```
-bash
-   # Development (with nodemon)
-   npm run dev
-
-   # Production
-   npm start
-
+CORS_ORIGIN=http://localhost:3000
 ```
 
-### Frontend Setup
+### 3. Frontend Environment
 
-1. Navigate to the frontend directory:
+Create `frontend/.env`:
 
-```
-bash
-   cd frontend
+```env
+VITE_API_URL=/api
 
-```
-
-2. Install dependencies:
-
-```
-bash
-   npm install
-
+VITE_FIREBASE_API_KEY=<your-key>
+VITE_FIREBASE_AUTH_DOMAIN=<project>.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=<project-id>
+VITE_FIREBASE_STORAGE_BUCKET=<project>.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=<sender-id>
+VITE_FIREBASE_APP_ID=<app-id>
 ```
 
-3. Configure environment:
-   - Update `env.json` with your backend URL:
+### 4. Run
 
-```
-json
-   {
-     "backend_host": "http://localhost:5000"
-   }
+```bash
+# Terminal 1 — Backend (port 5000)
+cd backend && npm run dev
 
-```
-
-4. Start the development server:
-
-```
-bash
-   npm run dev
-
+# Terminal 2 — Frontend (port 3000, proxies /api → :5000)
+cd frontend && npm run dev
 ```
 
-5. Open http://localhost:5173 in your browser
+Open **http://localhost:3000**
 
-## 📡 API Endpoints
+## API Endpoints
 
-### Authentication
+### Auth
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/auth/firebase-login` | — | Send Firebase ID token, get JWT |
 
-| Method | Endpoint                   | Description          |
-| ------ | -------------------------- | -------------------- |
-| POST   | `/api/auth/firebase-login` | Firebase token login |
+### Profile
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/profile/me` | ✅ | Get current user profile |
+| PUT | `/api/profile/update` | ✅ | Update profile (multipart) |
 
-### Users
+### Posts
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/posts/create` | ✅ | Create listing (multipart) |
+| GET | `/api/posts/all` | — | Get all listings |
+| GET | `/api/posts/:id` | — | Get single listing |
+| PUT | `/api/posts/:id` | ✅ | Update listing (owner) |
+| DELETE | `/api/posts/:id` | ✅ | Delete listing (owner) |
 
-| Method | Endpoint                    | Description    |
-| ------ | --------------------------- | -------------- |
-| POST   | `/api/users/save-fcm-token` | Save FCM token |
+## MongoDB Collections
 
-### Products
+- **farmer_users** — Account info + Firebase UID
+- **profileinfos** — Extended profile (farm, bio, etc.)
+- **farmerposts** — Marketplace listings with Cloudinary URLs
 
-| Method | Endpoint        | Description                    |
-| ------ | --------------- | ------------------------------ |
-| GET    | `/api/products` | Get all products               |
-| POST   | `/api/products` | Create product (Auth required) |
+## Project Structure
 
-## 🔐 Security Features
+```
+backend/
+  config/       → db.js, firebase.js, cloudinary.js
+  controllers/  → authController, profileController, postController
+  middleware/   → authMiddleware, uploadMiddleware
+  models/       → FarmerUser, ProfileInfo, FarmerPost
+  routes/       → authRoutes, profileRoutes, postRoutes
+  utils/        → errorHandler
+  server.js
 
-- JWT token-based authentication
-- Firebase token verification
-- Helmet for HTTP security headers
-- CORS configuration
-- Rate limiting (100 requests/15 min)
-- Input validation with Joi
+frontend/src/
+  pages/        → AuthPage, MarketplacePage, ProfilePage, FarmerDashboard, ...
+  services/     → api.js (re-export)
+  utils/        → api.js (axios + named API functions)
+  stores/       → appStore.js (Zustand)
+  firebase.js   → Firebase client config
+```
 
-## 🎨 UI Components
+## Auth Flow
 
-The project uses Radix UI primitives with custom styling:
-
-- Buttons, Inputs, Cards
-- Dialogs, Dropdowns
-- Navigation components
-- Form elements
-- Toast notifications (Sonner)
-- And many more...
-
-## 📱 Push Notifications
-
-Firebase Cloud Messaging (FCM) is integrated for:
-
-- New product alerts
-- Order notifications
-- System updates
-
-## 🌐 Multi-Language Support
-
-The app supports 4 languages:
-
-- English (en)
-- Hindi (hi)
-- Khasi (khasi)
-- Mizo (mizo)
-
-Language can be selected during the authentication flow.
-
-## 📄 License
-
-ISC License
-
-## 👏 Acknowledgments
-
-Built with ❤️ team [system.in]
+1. User signs in via Firebase (Google or Phone OTP)
+2. Frontend sends Firebase ID token to `POST /api/auth/firebase-login`
+3. Backend verifies token with Firebase Admin SDK
+4. Backend finds/creates user in MongoDB + auto-creates profile
+5. Backend returns JWT session token
+6. Frontend stores JWT and uses it for all authenticated requests

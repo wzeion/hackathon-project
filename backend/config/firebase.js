@@ -39,9 +39,14 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
 }
 
 if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
+  try {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+    });
+    console.log(`✅ Firebase Admin SDK Initialized: ${serviceAccount.project_id || serviceAccount.projectId}`);
+  } catch (error) {
+    console.error('❌ Firebase Admin SDK Initialization Error:', error.message);
+  }
 }
 
 module.exports = admin;

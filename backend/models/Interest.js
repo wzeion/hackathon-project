@@ -1,31 +1,30 @@
 const mongoose = require("mongoose");
 
-const notificationSchema = new mongoose.Schema({
-    recipientId: {
+const interestSchema = new mongoose.Schema({
+    postId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "FarmerPost",
+        required: true,
+    },
+    buyerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "FarmerUser",
         required: true,
     },
-    senderId: {
+    farmerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "FarmerUser",
-    },
-    title: {
-        type: String,
         required: true,
     },
     message: {
         type: String,
         required: true,
+        maxlength: 500,
     },
-    type: {
+    status: {
         type: String,
-        enum: ["interest", "system", "message"],
-        default: "system",
-    },
-    readStatus: {
-        type: Boolean,
-        default: false,
+        enum: ["pending", "contacted", "closed"],
+        default: "pending",
     },
     createdAt: {
         type: Date,
@@ -33,4 +32,4 @@ const notificationSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("Notification", notificationSchema);
+module.exports = mongoose.model("Interest", interestSchema);

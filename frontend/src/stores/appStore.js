@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import api from "../utils/api";
 
 export const useAppStore = create()(
   persist(

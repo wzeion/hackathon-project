@@ -1,8 +1,5 @@
 /** Translation map for Local Connect — 4 languages */
 
-
-
-
 export const translations = {
   en: {
     // Nav
@@ -50,7 +47,7 @@ export const translations = {
     "products.delete": "Delete",
     "products.markSold": "Mark ",
     "products.markActive": "Mark ",
-    "products.search": "Search crops...",
+    "products.search": "Search crops, locations, farmers...",
     "products.filter": "Filters",
     "products.location": "Location",
     "products.price": "Price (₹/kg)",
@@ -173,7 +170,8 @@ export const translations = {
 
     // Home Page
     "home.heroTitle": "Connecting Farmers Directly With Buyers",
-    "home.heroSubtitle": "Local Connect is the digital marketplace for Meghalaya and Mizoram's finest produce. Empowering small farmers with technology.",
+    "home.heroSubtitle":
+      "Local Connect is the digital marketplace for Meghalaya and Mizoram's finest produce. Empowering small farmers with technology.",
     "home.browseMarketplace": "Browse Marketplace",
     "home.startSelling": "Start Selling",
     "home.howItWorks": "How It Works",
@@ -185,16 +183,20 @@ export const translations = {
     "home.feature2": "Real-time Notifications",
     "home.feature3": "Cloud Media Management",
     "home.impactTitle": "Supporting Our Local Community",
-    "home.impactDesc": "We help small-holder farmers get better visibility and fair prices for their hard work, boosting the regional economy of Northeast India.",
+    "home.impactDesc":
+      "We help small-holder farmers get better visibility and fair prices for their hard work, boosting the regional economy of Northeast India.",
 
     // About Page
     "about.title": "Our Mission",
     "about.problem": "Problem Statement",
-    "about.problemDesc": "Middlemen often reduce the profits of small farmers while consumers pay more for less fresh products.",
+    "about.problemDesc":
+      "Middlemen often reduce the profits of small farmers while consumers pay more for less fresh products.",
     "about.mission": "Mission",
-    "about.missionDesc": "To bridge the gap between farm and table using simple, accessible technology.",
+    "about.missionDesc":
+      "To bridge the gap between farm and table using simple, accessible technology.",
     "about.vision": "Vision",
-    "about.visionDesc": "A sustainable, transparent, and digital-first agricultural ecosystem in the Northeast.",
+    "about.visionDesc":
+      "A sustainable, transparent, and digital-first agricultural ecosystem in the Northeast.",
 
     // Contact Page
     "contact.title": "Contact Us",
@@ -254,7 +256,7 @@ export const translations = {
     "products.delete": "हटाएं",
     "products.markSold": "बेचा हुआ चिह्नित करें",
     "products.markActive": "सक्रिय चिह्नित करें",
-    "products.search": "फसल खोजें...",
+    "products.search": "फसल, स्थान, किसान खोजें...",
     "products.filter": "फ़िल्टर",
     "products.location": "स्थान",
     "products.price": "मूल्य (₹/किग्रा)",
@@ -302,7 +304,8 @@ export const translations = {
     "interests.contactInfo": "संपर्क जानकारी",
     "interests.farmerContact": "संपर्क किया जाने पर किसान की जानकारी साझा होगी",
     "interests.interestSent": "रुचि सफलतापूर्वक व्यक्त की!",
-    "interests.alreadyInterested": "आप पहले से इस उत्पाद में रुचि व्यक्त कर चुके हैं",
+    "interests.alreadyInterested":
+      "आप पहले से इस उत्पाद में रुचि व्यक्त कर चुके हैं",
 
     // Notifications
     "notifications.title": "सूचनाएं",
@@ -375,7 +378,8 @@ export const translations = {
 
     // Home Page
     "home.heroTitle": "किसानों को सीधे खरीदारों से जोड़ना",
-    "home.heroSubtitle": "लोकल कनेक्ट मेघालय और मिजोरम की बेहतरीन उपज के लिए डिजिटल बाज़ार है। तकनीक के साथ छोटे किसानों को सशक्त बनाना।",
+    "home.heroSubtitle":
+      "लोकल कनेक्ट मेघालय और मिजोरम की बेहतरीन उपज के लिए डिजिटल बाज़ार है। तकनीक के साथ छोटे किसानों को सशक्त बनाना।",
     "home.browseMarketplace": "बाज़ार देखें",
     "home.startSelling": "बेचना शुरू करें",
     "home.howItWorks": "यह कैसे काम करता है",
@@ -387,16 +391,20 @@ export const translations = {
     "home.feature2": "वास्तविक समय सूचनाएं",
     "home.feature3": "क्लाउड मीडिया प्रबंधन",
     "home.impactTitle": "हमारे स्थानीय समुदाय का समर्थन",
-    "home.impactDesc": "हम छोटे किसानों को उनकी कड़ी मेहनत के लिए बेहतर दृश्यता और उचित मूल्य दिलाने में मदद करते हैं।",
+    "home.impactDesc":
+      "हम छोटे किसानों को उनकी कड़ी मेहनत के लिए बेहतर दृश्यता और उचित मूल्य दिलाने में मदद करते हैं।",
 
     // About Page
     "about.title": "हमारा मिशन",
     "about.problem": "समस्या विवरण",
-    "about.problemDesc": "बिचौलिए अक्सर छोटे किसानों के मुनाफे को कम कर देते हैं जबकि उपभोक्ता कम ताज़ा उत्पादों के लिए अधिक भुगतान करते हैं।",
+    "about.problemDesc":
+      "बिचौलिए अक्सर छोटे किसानों के मुनाफे को कम कर देते हैं जबकि उपभोक्ता कम ताज़ा उत्पादों के लिए अधिक भुगतान करते हैं।",
     "about.mission": "मिशन",
-    "about.missionDesc": "सरल, सुलभ तकनीक का उपयोग करके खेत और मेज के बीच की दूरी को कम करना।",
+    "about.missionDesc":
+      "सरल, सुलभ तकनीक का उपयोग करके खेत और मेज के बीच की दूरी को कम करना।",
     "about.vision": "दृष्टि",
-    "about.visionDesc": "पूर्वोत्तर में एक टिकाऊ, पारदर्शी और डिजिटल-प्रथम कृषि पारिस्थितिकी तंत्र।",
+    "about.visionDesc":
+      "पूर्वोत्तर में एक टिकाऊ, पारदर्शी और डिजिटल-प्रथम कृषि पारिस्थितिकी तंत्र।",
 
     // Contact Page
     "contact.title": "संपर्क करें",
@@ -577,7 +585,8 @@ export const translations = {
 
     // Home Page
     "home.heroTitle": "Pyniasoh ia ki Khun Jingshong bad ki Nongthied",
-    "home.heroSubtitle": "Ka Local Connect ka dei ka iew digital na ka bynta ka Meghalaya bad Mizoram. Pynshlur ia ki nongrep rit.",
+    "home.heroSubtitle":
+      "Ka Local Connect ka dei ka iew digital na ka bynta ka Meghalaya bad Mizoram. Pynshlur ia ki nongrep rit.",
     "home.browseMarketplace": "Leit sha ka Iew",
     "home.startSelling": "Sdang ban Die",
     "home.howItWorks": "Kumno ka Trei",
@@ -589,16 +598,20 @@ export const translations = {
     "home.feature2": "Ka Jingpynbna Mynsiem",
     "home.feature3": "Cloud Media Management",
     "home.impactTitle": "Kyrshan ia ka Shnong ka Thaw",
-    "home.impactDesc": "Ngi iarap ia ki nongrep rit ban ioh ia ka dor kaba biang na ka bynta ka jingtrei shitom jong ki.",
+    "home.impactDesc":
+      "Ngi iarap ia ki nongrep rit ban ioh ia ka dor kaba biang na ka bynta ka jingtrei shitom jong ki.",
 
     // About Page
     "about.title": "Ka Jingthmu",
     "about.problem": "Ka Jingeh",
-    "about.problemDesc": "Ki middlemen ki shim ia ka bhah ki nongrep rit bad ki nongthied ki siew duna.",
+    "about.problemDesc":
+      "Ki middlemen ki shim ia ka bhah ki nongrep rit bad ki nongthied ki siew duna.",
     "about.mission": "Ka Mission",
-    "about.missionDesc": "Ban pyniasoh ia ka lyngkha bad ka miej da ka jingstad reb.",
+    "about.missionDesc":
+      "Ban pyniasoh ia ka lyngkha bad ka miej da ka jingstad reb.",
     "about.vision": "Ka Vision",
-    "about.visionDesc": "Ka lympung rep kaba shai bad digital ha ka thain Shatei Lam-miet.",
+    "about.visionDesc":
+      "Ka lympung rep kaba shai bad digital ha ka thain Shatei Lam-miet.",
 
     // Contact Page
     "contact.title": "Kynduh ia Ngi",
@@ -780,7 +793,8 @@ export const translations = {
 
     // Home Page
     "home.heroTitle": "Loneptu leh Lei tute tlang taka inzawmna",
-    "home.heroSubtitle": "Local Connect hi Meghalaya leh Mizoram thlai thar dahkhawmna digital bazaar a ni. Loneptu te tana hmanrua thar.",
+    "home.heroSubtitle":
+      "Local Connect hi Meghalaya leh Mizoram thlai thar dahkhawmna digital bazaar a ni. Loneptu te tana hmanrua thar.",
     "home.browseMarketplace": "Bazaar En Rawh",
     "home.startSelling": "Zuar Tan Rawh",
     "home.howItWorks": "Engtin nge a thawh?",
@@ -792,7 +806,8 @@ export const translations = {
     "home.feature2": "Hriattirna thar zel",
     "home.feature3": "Cloud Media Management",
     "home.impactTitle": "Kan ram hmasawnna tan",
-    "home.impactDesc": "Loneptu harsa zawk te tan an kuta thil thar an hralh theih nan leh man tha an hmuh nan kan thawk a ni.",
+    "home.impactDesc":
+      "Loneptu harsa zawk te tan an kuta thil thar an hralh theih nan leh man tha an hmuh nan kan thawk a ni.",
 
     // About Page
     "about.title": "Kan Thil Tum",
@@ -801,7 +816,8 @@ export const translations = {
     "about.mission": "Mission",
     "about.missionDesc": "Loneptu leh lei tute awlsam taka inzawm tir.",
     "about.vision": "Vision",
-    "about.visionDesc": "Hmarchhak lama thlai thar hralhna digital hmun tha ber nih.",
+    "about.visionDesc":
+      "Hmarchhak lama thlai thar hralhna digital hmun tha ber nih.",
 
     // Contact Page
     "contact.title": "Min Biak Pawh Nan",
