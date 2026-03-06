@@ -82,7 +82,6 @@
 }
 
 @layer utilities {
-
   /* Grain texture overlay */
   .grain-overlay::after {
     content: "";
@@ -96,17 +95,32 @@
   /* Hero gradient mesh */
   .hero-mesh {
     background:
-      radial-gradient(ellipse at 20% 50%, oklch(0.55 0.12 145 / 0.15) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, oklch(0.75 0.15 75 / 0.12) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 100%, oklch(0.55 0.1 120 / 0.1) 0%, transparent 40%),
+      radial-gradient(
+        ellipse at 20% 50%,
+        oklch(0.55 0.12 145 / 0.15) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        oklch(0.75 0.15 75 / 0.12) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 50% 100%,
+        oklch(0.55 0.1 120 / 0.1) 0%,
+        transparent 40%
+      ),
       oklch(var(--background));
   }
 
   /* Leaf pattern background */
   .leaf-bg {
     background-color: oklch(var(--background));
-    background-image:
-      radial-gradient(circle at 1px 1px, oklch(0.45 0.15 145 / 0.08) 1px, transparent 0);
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      oklch(0.45 0.15 145 / 0.08) 1px,
+      transparent 0
+    );
     background-size: 24px 24px;
   }
 
@@ -147,17 +161,22 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg,
-        oklch(0.45 0.15 145 / 0.4),
-        oklch(0.75 0.15 75 / 0.4));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    background: linear-gradient(
+      135deg,
+      oklch(0.45 0.15 145 / 0.4),
+      oklch(0.75 0.15 75 / 0.4)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
   }
 }
-
 
 /* This is for Scrolling Animation : */
 @layer utilities {
@@ -197,7 +216,6 @@
   }
 }
 
-
 @keyframes scrollX {
   0% {
     transform: translateX(0);
@@ -211,20 +229,19 @@
   animation: scrollX 30s linear infinite;
 }
 
-
 .bounce {
   animation: smoothBounce 2.5s ease-in-out infinite;
 }
 
 @keyframes smoothBounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(-10px);
   }
 }
-
 
 .glass2 {
   background: linear-gradient(
@@ -240,6 +257,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 10px 10px rgba(0, 0, 0, 0.6);
 }
-.glass2:hover{
+.glass2:hover {
   transform: scale(1.1);
 }

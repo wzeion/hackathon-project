@@ -38,7 +38,7 @@ import {
   signup,
   login,
   requestOTP,
-  verifyOTP
+  verifyOTP,
 } from "../utils/api";
 
 // ── Language options ──────────────────────────────────────────────────────
@@ -50,9 +50,21 @@ const LANGUAGES = [
 ];
 
 const demoAccounts = [
-  { user: demoFarmer, label: "Farmer", color: "border-farm-green/20 hover:bg-farm-green-pale" },
-  { user: demoBuyer, label: "Buyer", color: "border-farm-amber/20 hover:bg-farm-amber-pale" },
-  { user: demoAdmin, label: "Admin", color: "border-muted-foreground/20 hover:bg-muted" },
+  {
+    user: demoFarmer,
+    label: "Farmer",
+    color: "border-farm-green/20 hover:bg-farm-green-pale",
+  },
+  {
+    user: demoBuyer,
+    label: "Buyer",
+    color: "border-farm-amber/20 hover:bg-farm-amber-pale",
+  },
+  {
+    user: demoAdmin,
+    label: "Admin",
+    color: "border-muted-foreground/20 hover:bg-muted",
+  },
 ];
 
 const enter = { x: 20, opacity: 0 };
@@ -76,6 +88,17 @@ export default function AuthPage() {
   const [password, setPassword] = useState("");
   const [isSignup, setIsSignup] = useState(false);
   const [authMode, setAuthMode] = useState("phone"); // "phone" or "email"
+  const [step, setStep] = useState(1);
+  const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [otpError, setOtpError] = useState("");
+  const [role, setRole] = useState("");
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
+  const [profileError, setProfileError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("en");
   const otpRefs = useRef([]);
 
   // Function to save FCM token (best effort, non-blocking)
@@ -212,7 +235,13 @@ export default function AuthPage() {
       setIsLoading(true);
       let data;
       if (isSignup) {
-        data = await signup({ name: "User", email, password, phone: "0000000000", role: "buyer" });
+        data = await signup({
+          name: "User",
+          email,
+          password,
+          phone: "0000000000",
+          role: "buyer",
+        });
       } else {
         data = await login({ email, password });
       }
@@ -270,11 +299,11 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="max-h-screen flex flex-col md:flex-row">
       {/* ── Left panel: hero ──────────────────────────────────────────── */}
       <div className="hidden md:flex md:w-1/2 relative flex-col justify-between p-10 overflow-hidden">
         <img
-          src="/assets/generated/hero-farm.dim_1200x600.jpg"
+          src="src/assets/signup.png"
           alt="Farm landscape"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -296,7 +325,8 @@ export default function AuthPage() {
             <Star className="w-3.5 h-3.5 fill-farm-amber text-farm-amber" />
             <span>Trusted by 10,000+ farmers</span>
           </div>
-          <h1 className="font-display text-4xl font-bold text-white leading-tight">
+          <div className="bg-green-600/40 w-[60%] pl-5 rounded-[20px]">
+            <h1 className="font-display text-4xl font-bold  text-white leading-tight">
             Connecting Farmers
             <br />
             <span className="text-farm-amber">Directly</span> to Buyers
@@ -305,6 +335,7 @@ export default function AuthPage() {
             Sell your harvest at fair prices. Reach buyers across India without
             middlemen. Available in English, Hindi, Khasi, and Mizo.
           </p>
+          </div>
           <div className="flex gap-3 pt-2">
             {[
               { label: "Languages", value: "4" },
@@ -343,8 +374,9 @@ export default function AuthPage() {
             {[1, 2, 3, 4].map((s) => (
               <div
                 key={s}
-                className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${s <= step ? "bg-primary" : "bg-muted"
-                  }`}
+                className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${
+                  s <= step ? "bg-primary" : "bg-muted"
+                }`}
               />
             ))}
           </div>
@@ -427,20 +459,20 @@ export default function AuthPage() {
 
                 <div className="flex gap-2 p-1 bg-muted rounded-xl">
                   <button
-                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all ${authMode === 'phone' ? 'bg-background shadow-sm' : 'text-muted-foreground'}`}
-                    onClick={() => setAuthMode('phone')}
+                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all ${authMode === "phone" ? "bg-background shadow-sm" : "text-muted-foreground"}`}
+                    onClick={() => setAuthMode("phone")}
                   >
                     Phone
                   </button>
                   <button
-                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all ${authMode === 'email' ? 'bg-background shadow-sm' : 'text-muted-foreground'}`}
-                    onClick={() => setAuthMode('email')}
+                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all ${authMode === "email" ? "bg-background shadow-sm" : "text-muted-foreground"}`}
+                    onClick={() => setAuthMode("email")}
                   >
                     Email
                   </button>
                 </div>
 
-                {authMode === 'email' ? (
+                {authMode === "email" ? (
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
@@ -469,10 +501,16 @@ export default function AuthPage() {
                         checked={isSignup}
                         onChange={(e) => setIsSignup(e.target.checked)}
                       />
-                      <Label htmlFor="signup-toggle" className="text-sm">Create new account</Label>
+                      <Label htmlFor="signup-toggle" className="text-sm">
+                        Create new account
+                      </Label>
                     </div>
-                    <Button onClick={handleEmailAuth} className="w-full" disabled={isLoading}>
-                      {isLoading ? "Wait..." : (isSignup ? "Sign Up" : "Log In")}
+                    <Button
+                      onClick={handleEmailAuth}
+                      className="w-full"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Wait..." : isSignup ? "Sign Up" : "Log In"}
                     </Button>
                   </div>
                 ) : (
@@ -503,10 +541,11 @@ export default function AuthPage() {
                               setSelectedLang(lang.code);
                               setLanguage(lang.code);
                             }}
-                            className={`py-2 px-1 rounded-lg border text-center text-xs font-medium transition-all ${selectedLang === lang.code
-                              ? "border-primary bg-farm-green-pale text-primary"
-                              : "border-border bg-card text-muted-foreground hover:border-primary/40"
-                              }`}
+                            className={`py-2 px-1 rounded-lg border text-center text-xs font-medium transition-all ${
+                              selectedLang === lang.code
+                                ? "border-primary bg-farm-green-pale text-primary"
+                                : "border-border bg-card text-muted-foreground hover:border-primary/40"
+                            }`}
                           >
                             <div className="text-sm">{lang.native}</div>
                           </button>
@@ -610,8 +649,9 @@ export default function AuthPage() {
                       value={otp[i]}
                       onChange={(e) => handleOtpChange(i, e.target.value)}
                       onKeyDown={(e) => handleOtpKeyDown(i, e)}
-                      className={`w-11 h-12 text-center text-lg font-bold rounded-xl border-2 bg-card text-foreground transition-all outline-none focus:border-primary focus:bg-farm-green-pale ${otp[i] ? "border-primary" : "border-input"
-                        }`}
+                      className={`w-11 h-12 text-center text-lg font-bold rounded-xl border-2 bg-card text-foreground transition-all outline-none focus:border-primary focus:bg-farm-green-pale ${
+                        otp[i] ? "border-primary" : "border-input"
+                      }`}
                     />
                   ))}
                 </div>

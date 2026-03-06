@@ -176,7 +176,7 @@ export default function MarketplacePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background mt-20">
       {/* ── Hero banner ────────────────────────────────────────────────── */}
       <div className="relative h-40 md:h-64 overflow-hidden">
         <img

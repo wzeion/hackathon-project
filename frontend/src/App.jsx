@@ -6,9 +6,16 @@ import { useAppStore } from "./stores/appStore";
 import { requestForToken, onMessageListener } from "./firebase";
 import api from "./utils/api";
 
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import AuthPage from "./pages/AuthPage";
 import MarketplacePage from "./pages/MarketplacePage";
 import ProfilePage from "./pages/ProfilePage";
@@ -75,35 +82,151 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         {/* Public Routes */}
-        <Route path="/" element={<PageTransition><HomePage /></PageTransition>} />
-        <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
-        <Route path="/login" element={!currentUser ? <PageTransition><AuthPage /></PageTransition> : <Navigate to="/" />} />
+        <Route
+          path="/"
+          element={
+            <PageTransition>
+              <HomePage />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <PageTransition>
+              <AboutPage />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <PageTransition>
+              <ContactPage />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            !currentUser ? (
+              <PageTransition>
+                <AuthPage />
+              </PageTransition>
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
 
         {/* Protected Routes */}
-        <Route path="/marketplace" element={currentUser ? <PageTransition><MarketplacePage /></PageTransition> : <Navigate to="/login" />} />
-        <Route path="/product/:id" element={currentUser ? <PageTransition><ProductDetailPage /></PageTransition> : <Navigate to="/login" />} />
-        <Route path="/profile" element={currentUser ? <PageTransition><ProfilePage /></PageTransition> : <Navigate to="/login" />} />
-        <Route path="/notifications" element={currentUser ? <PageTransition><NotificationsPage /></PageTransition> : <Navigate to="/login" />} />
-        <Route path="/messages" element={currentUser ? <PageTransition><MessagesPage /></PageTransition> : <Navigate to="/login" />} />
+        <Route
+          path="/marketplace"
+          element={
+            currentUser ? (
+              <PageTransition>
+                <MarketplacePage />
+              </PageTransition>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/product/:id"
+          element={
+            currentUser ? (
+              <PageTransition>
+                <ProductDetailPage />
+              </PageTransition>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            currentUser ? (
+              <PageTransition>
+                <ProfilePage />
+              </PageTransition>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            currentUser ? (
+              <PageTransition>
+                <NotificationsPage />
+              </PageTransition>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            currentUser ? (
+              <PageTransition>
+                <MessagesPage />
+              </PageTransition>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
 
         {/* Dashboard Routing */}
         <Route
           path="/dashboard"
           element={
-            !currentUser ? <Navigate to="/login" /> :
+            !currentUser ? (
+              <Navigate to="/login" />
+            ) : (
               <PageTransition>
-                {currentUser.role === "admin" ? <AdminDashboard /> :
-                  currentUser.role === "farmer" ? <FarmerDashboard /> :
-                    <BuyerDashboard />}
+                {currentUser.role === "admin" ? (
+                  <AdminDashboard />
+                ) : currentUser.role === "farmer" ? (
+                  <FarmerDashboard />
+                ) : (
+                  <BuyerDashboard />
+                )}
               </PageTransition>
+            )
           }
         />
 
-        <Route path="/add-product" element={currentUser?.role === "farmer" ? <PageTransition><AddProductPage /></PageTransition> : <Navigate to="/marketplace" />} />
+        <Route
+          path="/add-product"
+          element={
+            currentUser?.role === "farmer" ? (
+              <PageTransition>
+                <AddProductPage />
+              </PageTransition>
+            ) : (
+              <Navigate to="/marketplace" />
+            )
+          }
+        />
 
         {/* Admin only */}
-        <Route path="/admin" element={currentUser?.role === "admin" ? <PageTransition><AdminDashboard /></PageTransition> : <Navigate to="/" />} />
+        <Route
+          path="/admin"
+          element={
+            currentUser?.role === "admin" ? (
+              <PageTransition>
+                <AdminDashboard />
+              </PageTransition>
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
@@ -125,23 +248,7 @@ export default function App() {
           <AnimatedRoutes />
         </main>
 
-        {currentUser && (
-          <footer className="border-t border-border bg-card py-4 px-4 sm:px-6">
-            <p className="text-center text-xs text-muted-foreground">
-              © {new Date().getFullYear()}{" "}
-              <span className="font-medium text-foreground">Local Connect</span>.
-              Built with ❤️ team{" "}
-              <a
-                href={``}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-primary transition-colors"
-              >
-                system.in
-              </a>
-            </p>
-          </footer>
-        )}
+        {currentUser && <Footer />}
 
         <Toaster position="top-right" richColors />
         <OfflineBar />
