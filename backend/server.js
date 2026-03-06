@@ -13,26 +13,43 @@ dotenv.config();
 const app = express();
 
 // ── Security Middleware ─────────────────────────────────────────────────────
-// Relaxed for debugging 403 errors
+// Production-ready security settings
+const corsOrigin = process.env.CORS_ORIGIN || "http://localhost:3000";
+
 app.use(
   helmet({
     crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
     crossOriginResourcePolicy: { policy: "cross-origin" },
-    contentSecurityPolicy: false, // Disable CSP for debugging
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://*.firebaseapp.com",
+          "https://*.google.com",
+        ],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:", "https:", "blob:"],
+        connectSrc: [
+          "'self'",
+          "https://*.firebase.com",
+          "https://*.googleapis.com",
+          "https://*.cloudinary.com",
+        ],
+        fontSrc: ["'self'", "data:"],
+      },
+    },
   }),
 );
 app.use(
   cors({
-    origin: true,
+    origin: corsOrigin,
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
-
-// Request logger for debugging
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url} - Origin: ${req.get("Origin")}`);
-  next();
-});
 
 // ── Body Parsing ────────────────────────────────────────────────────────────
 app.use(express.json({ limit: "10mb" }));

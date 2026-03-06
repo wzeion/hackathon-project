@@ -4,17 +4,17 @@
  * of having API calls in a services/api.js file.
  */
 export {
-    default,
-    firebaseLogin,
-    signup,
-    login,
-    requestOTP,
-    verifyOTP,
-    getProfile,
-    updateProfile,
-    createPost,
-    getAllPosts,
-    getPostById,
-    updatePost,
-    deletePost,
-} from '../utils/api';
+  default as api,
+  firebaseLogin,
+  signup,
+  login,
+  requestOTP,
+  verifyOTP,
+  getProfile,
+  updateProfile,
+  createPost,
+  getAllPosts,
+  getPostById,
+  updatePost,
+  deletePost,
+} from "../utils/api";
