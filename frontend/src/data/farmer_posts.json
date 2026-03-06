@@ -6,7 +6,7 @@
 "price": 120,
 "quantity": "50 kg",
 "location": "Shillong, Meghalaya",
-"image": "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
+"image": "https://images.pexels.com/photos/33930747/pexels-photo-33930747.jpeg",
 "description": "Fresh organic ginger grown in the hills of Meghalaya.",
 "createdAt": "2026-03-01"
 },
@@ -17,7 +17,7 @@
 "price": 90,
 "quantity": "80 kg",
 "location": "Aizawl, Mizoram",
-"image": "https://images.pexels.com/photos/4198023/pexels-photo-4198023.jpeg",
+"image": "https://images.pexels.com/photos/12122270/pexels-photo-12122270.jpeg",
 "description": "Natural turmeric harvested from organic farms.",
 "createdAt": "2026-03-02"
 }
